@@ -1,0 +1,33 @@
+{
+    "name": "LwWDG",
+    "version": "v0.0.1",
+    "description": "Lightweight watchdog for operating systems and embedded systems",
+    "keywords": "lwwdg, watchdog, lightweight, independent, watchdog, rtos, os, system",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MaJerle/lwwdg.git"
+    },
+    "authors": [
+        {
+            "name": "Tilen Majerle",
+            "email": "tilen@majerle.eu",
+            "url": "https://majerle.eu"
+        }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/MaJerle/lwwdg",
+    "dependencies": {},
+    "frameworks": "*",
+    "platforms": "*",
+    "export": {
+        "exclude": [
+            ".github",
+            "dev",
+            "docs",
+            "**/.vs",
+            "**/Debug",
+            "build",
+            "**/build"
+        ]
+    }
+}

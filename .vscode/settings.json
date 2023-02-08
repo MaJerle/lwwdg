@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "lwevt_types.h": "c",
+        "lwevt_type.h": "c",
+        "lwevt.h": "c",
+        "string.h": "c",
+        "lwevt_opt.h": "c",
+        "lwwdg.h": "c",
+        "lwwdg_opt.h": "c",
+        "lwwdg_opts.h": "c"
+    },
+    "esbonio.sphinx.confDir": ""
+}
