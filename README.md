@@ -1,4 +1,4 @@
-# Lightweight Date, Time & Cron
+# Lightweight Watchdog for embedded systems
 
 LwWDG is lightweight watchdog library, primarly targeting operating systems,
 to watch multiple threads and reset system if one of them fails.
