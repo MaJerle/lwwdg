@@ -13,6 +13,12 @@ and reloads hardware watchdog, if everything is fine.
 When one of the software watchdogs isn't reloaded within maximum timeout window, main task does not reload
 hardware watchdog anymore, and therefore hardware will trigger the hardware reset.
 
+Platform migration
+^^^^^^^^^^^^^^^^^^
+
+Library requires atomicity in the processing function, and a milliseconds time.
+These should be implemented as macro. Checkout the configuration window.
+
 Example
 ^^^^^^^
 
