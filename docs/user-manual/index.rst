@@ -29,6 +29,13 @@ A simple example to illustrate functionality.
     :linenos:
     :caption: WIN32 example code
 
+A corresponding options file, that must be updated for Win32 port.
+
+.. literalinclude:: ../../dev/lwwdg_opts.h
+    :language: c
+    :linenos:
+    :caption: WIN32 LwWDG options file
+
 .. toctree::
     :maxdepth: 2
 

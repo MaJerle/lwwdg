@@ -56,15 +56,56 @@ lwwdg_init(void) {
  */
 uint8_t
 lwwdg_add(lwwdg_wdg_t* wdg, uint32_t timeout) {
-    uint8_t ret = 0;
+    uint8_t ret = 1;
     LWWDG_CRITICAL_SECTION_DEFINE;
 
     wdg->timeout = timeout;
     wdg->last_reload_time = LWWDG_GET_TIME();
     LWWDG_CRITICAL_SECTION_LOCK();
-    wdg->next = wdgs;
-    wdgs = wdg;
+    /* Check if already on a list -> we don't want that */
+    for (lwwdg_wdg_t* w = wdgs; w != NULL; w = w->next) {
+        if (w == wdg) {
+            ret = 0;
+        }
+    }
+    if (ret) {
+        /* Add to beginning of a list */
+        wdg->next = wdgs;
+        wdgs = wdg;
+    }
     LWWDG_CRITICAL_SECTION_UNLOCK();
+    return ret;
+}
+
+/**
+ * \brief           Remove watchdog from the list
+ * 
+ * This function is typically used if a task
+ * is killed by the scheduler. A user must manually
+ * call the function and can later clean wdg memory
+ * 
+ * \param           wdg: Watchdog handle to remove from list
+ * \return          `1` if removed, `0` otherwise
+ */
+uint8_t
+lwwdg_remove(lwwdg_wdg_t* wdg) {
+    lwwdg_wdg_t** ind;
+    LWWDG_CRITICAL_SECTION_DEFINE;
+    uint8_t ret = 0;
+
+    LWWDG_CRITICAL_SECTION_LOCK();
+    /* Check if watchdog exists on a list */
+    ind = &wdgs; /* Get address of the first entry */
+    while (*ind != NULL && *ind != wdg) {
+        ind = &(*ind)->next;
+    }
+
+    /* ind should not be NULL if entry exists on linked list */
+    if (ind != NULL) {
+        *ind = wdg->next; /* Remove entry from the list */
+    }
+    LWWDG_CRITICAL_SECTION_UNLOCK();
+
     return ret;
 }
 
@@ -80,10 +121,10 @@ lwwdg_add(lwwdg_wdg_t* wdg, uint32_t timeout) {
  */
 uint8_t
 lwwdg_reload(lwwdg_wdg_t* wdg) {
+    LWWDG_CRITICAL_SECTION_DEFINE;
     uint8_t ret = 0;
     uint32_t time = LWWDG_GET_TIME();
 
-    LWWDG_CRITICAL_SECTION_DEFINE;
     LWWDG_CRITICAL_SECTION_LOCK();
     if ((time - wdg->last_reload_time) < wdg->timeout) {
         wdg->last_reload_time = time;
@@ -105,10 +146,10 @@ lwwdg_reload(lwwdg_wdg_t* wdg) {
  */
 uint8_t
 lwwdg_process(void) {
+    LWWDG_CRITICAL_SECTION_DEFINE;
     uint8_t ret = 1;
     uint32_t time = LWWDG_GET_TIME();
 
-    LWWDG_CRITICAL_SECTION_DEFINE;
     LWWDG_CRITICAL_SECTION_LOCK();
     for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
         if ((time - wdg->last_reload_time) > wdg->timeout) {

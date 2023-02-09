@@ -22,7 +22,7 @@ sys_get_tick(void) {
 }
 
 /* Task 1 */
-void
+static void
 task1(void* arg) {
     static lwwdg_wdg_t wdg;
     (void)arg;
@@ -36,7 +36,7 @@ task1(void* arg) {
 }
 
 /* Task 1 */
-void
+static void
 task2(void* arg) {
     static lwwdg_wdg_t wdg;
     (void)arg;
@@ -44,7 +44,7 @@ task2(void* arg) {
     printf("%8u: Task 2 started...\r\n", (unsigned)sys_get_tick());
     lwwdg_add(&wdg, 5000);
     while (1) {
-        /* No reload anymore... */
+        /* No reload in this task -> consider it failed to run properly */
         Sleep(1000);
     }
 }
@@ -74,10 +74,11 @@ example_win32(void) {
             printf("%8u: Refreshing hardware watchdog...\r\n", (unsigned)sys_get_tick());
             /* TODO: This is where you should reload hardware watchdog */
         } else {
-            printf("%8u: At least one task is out of window -> no refresh of hardware watchdog anymore...\r\n",
+            printf("%8u: At least one task is out of window -> HW watchdog should not be reloaded anymore\r\n",
                    (unsigned)sys_get_tick());
+            break;
         }
         Sleep(500); /* Make some sleep to offload messages in the WIN32 example */
     }
-    return 0;
+    printf("Example completed - a hardware should reset the system now...\r\n");
 }
