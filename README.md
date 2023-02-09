@@ -1,6 +1,6 @@
 # Lightweight Watchdog for embedded systems
 
-LwWDG is lightweight watchdog library, primarly targeting operating systems,
+LwWDG is lightweight watchdog library, primarily targeting operating systems,
 to watch multiple threads and reset system if one of them fails.
 
 <h3>Read first: <a href="http://docs.majerle.eu/projects/lwwdg/">Documentation</a></h3>
