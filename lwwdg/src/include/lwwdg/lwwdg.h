@@ -62,6 +62,7 @@ typedef struct lwwdg_wdg {
 
 uint8_t lwwdg_init(void);
 uint8_t lwwdg_add(lwwdg_wdg_t* wdg, uint32_t timeout);
+uint8_t lwwdg_remove(lwwdg_wdg_t* wdg);
 uint8_t lwwdg_reload(lwwdg_wdg_t* wdg);
 uint8_t lwwdg_process(void);
 
