@@ -10,14 +10,14 @@ Each task in the system defines its very own Watchdog structure, and is responsi
 while one of the tasks, (it can be) called ``master`` task checks the processing function,
 and reloads hardware watchdog, if everything is fine.
 
-When one of the software watchdogs isn't reloaded within maximum timeout window, main task does not reload
-hardware watchdog anymore, and therefore hardware will trigger the hardware reset.
+When one of the software watchdogs isn't reloaded within maximum timeout window, main task is not supposed to reload hardware timer anymore.
+As a consequence, hardware watchdog will reset the system.
 
 Platform migration
 ^^^^^^^^^^^^^^^^^^
 
-Library requires atomicity in the processing function, and a milliseconds time.
-These should be implemented as macro. Checkout the configuration window.
+Library requires atomicity in the processing function, and a milliseconds time source.
+These should be implemented as macros in the configuration file. Checkout the configuration window or follow to example mentioned below.
 
 Example
 ^^^^^^^
