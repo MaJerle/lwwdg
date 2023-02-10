@@ -3,7 +3,7 @@ LwWDG |version| documentation
 
 Welcome to the documentation for version |version|.
 
-LwWDG is lightweight watchdog library, primarly targeting operating systems,
+LwWDG is lightweight watchdog library, primarily targeting operating systems,
 to watch multiple threads and reset system if one of them fails.
 
 .. image:: static/images/logo.svg

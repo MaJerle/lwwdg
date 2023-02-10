@@ -11,7 +11,7 @@ This guide is describing how to start with the library quickly and effectively
 Download library
 ^^^^^^^^^^^^^^^^
 
-Library is primarly hosted on `Github <https://github.com/MaJerle/lwwdg>`_.
+Library is primarily hosted on `Github <https://github.com/MaJerle/lwwdg>`_.
 
 You can get it by:
 

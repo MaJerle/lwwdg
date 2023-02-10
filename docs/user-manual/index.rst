@@ -4,7 +4,7 @@ User manual
 ===========
 
 LwWDG library is very simple and easy to use. LwWDG was designed to implement software watchdog functionality,
-primarly used in the operating systems.
+primarily used in the operating systems.
 
 Each task in the system defines its very own Watchdog structure, and is responsible to periodically call reload function,
 while one of the tasks, (it can be) called ``master`` task checks the processing function,
