@@ -62,7 +62,7 @@ Next step is to add the library to the project, by means of source files to comp
 
 * Copy ``lwwdg`` folder to your project, it contains library files
 * Add ``lwwdg/src/include`` folder to `include path` of your toolchain. This is where `C/C++` compiler can find the files during compilation process. Usually using ``-I`` flag
-* Add source files from ``lwwdg/src/`` folder to toolchain build. These files are built by `C/C++` compiler
+* Add source files from ``lwwdg/src/`` folder to toolchain build. These files are built by `C/C++` compiler. CMake configuration comes with the library, allows users to include library in the project as **subdirectory** and **library**.
 * Copy ``lwwdg/src/include/lwwdg/lwwdg_opts_template.h`` to project folder and rename it to ``lwwdg_opts.h``
 * Build the project
 
