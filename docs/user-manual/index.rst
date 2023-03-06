@@ -13,6 +13,13 @@ and reloads hardware watchdog, if everything is fine.
 When one of the software watchdogs isn't reloaded within maximum timeout window, main task is not supposed to reload hardware timer anymore.
 As a consequence, hardware watchdog will reset the system.
 
+.. note::
+    This library is designed for operating system, where operations are splitted in the tasks.
+    To ensure stable operation, each task should have a monitoring system.
+
+    Since microcontrollers typical utilize single independent watchdog, such solution must be implemented
+    as a combination of hardware and software components.
+
 Platform migration
 ^^^^^^^^^^^^^^^^^^
 
