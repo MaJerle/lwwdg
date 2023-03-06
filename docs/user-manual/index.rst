@@ -36,7 +36,7 @@ A simple example to illustrate functionality.
     :linenos:
     :caption: WIN32 example code
 
-A corresponding options file, that must be updated for Win32 port.
+A corresponding options file, tested for WIN32.
 
 .. literalinclude:: ../../dev/lwwdg_opts.h
     :language: c
