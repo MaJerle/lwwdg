@@ -3,7 +3,7 @@ LwWDG |version| documentation
 
 Welcome to the documentation for version |version|.
 
-LwWDG is lightweight watchdog library, primarly targeting operating systems,
+LwWDG is lightweight watchdog library, primarily targeting operating systems,
 to watch multiple threads and reset system if one of them fails.
 
 .. image:: static/images/logo.svg
@@ -65,7 +65,7 @@ Table of contents
     :hidden:
 
     LwBTN - Button manager <https://github.com/MaJerle/lwbtn>
-    LwWDG - DateTimeCron <https://github.com/MaJerle/lwwdg>
+    LwDTC - DateTimeCron <https://github.com/MaJerle/lwdtc>
     LwESP - ESP-AT library <https://github.com/MaJerle/lwesp>
     LwEVT - Event manager <https://github.com/MaJerle/lwevt>
     LwGPS - GPS NMEA parser <https://github.com/MaJerle/lwgps>
@@ -78,3 +78,4 @@ Table of contents
     LwRB - Ring buffer <https://github.com/MaJerle/lwrb>
     LwSHELL - Shell <https://github.com/MaJerle/lwshell>
     LwUTIL - Utility functions <https://github.com/MaJerle/lwutil>
+    LwWDG - RTOS task watchdog <https://github.com/MaJerle/lwwdg>

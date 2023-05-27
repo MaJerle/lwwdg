@@ -29,7 +29,7 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v0.0.1
+ * Version:         v1.0.0
  */
 #ifndef LWWDG_OPT_HDR_H
 #define LWWDG_OPT_HDR_H
@@ -51,6 +51,28 @@ extern "C" {
  * \brief           Default configuration setup
  * \{
  */
+
+/**
+ * \brief           Enables or disables field in wdg structure to contain 
+ *                  watchdog name.
+ * 
+ * This can be useful for debugging purposes
+ */
+#ifndef LWWDG_CFG_ENABLE_WDG_NAME
+#define LWWDG_CFG_ENABLE_WDG_NAME 0
+#endif
+
+/**
+ * \brief           Macro called if \ref LWWDG_CFG_ENABLE_WDG_NAME is enabled
+ *                  and if watchdog error occurs.
+ * 
+ * It can be overwritten by the application to print watchdog name. 
+ * 
+ * \param[in]       _wdg_name_: Watchdog name as defined by \ref lwwdg_set_name function
+ */
+#ifndef LWWDG_CFG_WDG_NAME_ERR_DEBUG
+#define LWWDG_CFG_WDG_NAME_ERR_DEBUG(_wdg_name_)
+#endif
 
 /**
  * \brief           Get system time in milliseconds.

@@ -29,19 +29,27 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v0.0.1
+ * Version:         v1.0.0
  */
 #ifndef LWWDG_HDR_OPTS_H
 #define LWWDG_HDR_OPTS_H
 
-/* Rename this file to "lwwdg_opts.h" for your application */
-#include "windows.h"
-extern uint32_t sys_get_tick(void);
-extern HANDLE lwwdg_mutex;
+#include <stdio.h>
 
-#define LWWDG_CRITICAL_SECTION_DEFINE
-#define LWWDG_CRITICAL_SECTION_LOCK()
-#define LWWDG_CRITICAL_SECTION_UNLOCK()
-#define LWWDG_GET_TIME() sys_get_tick()
+/* Win32 port */
+#include "windows.h"
+extern uint32_t sys_get_tick(void);   /* Milliseconds tick is available externally */
+extern HANDLE lwwdg_mutex;            /* Mutex is defined and initialized externally */
+
+#define LWWDG_CRITICAL_SECTION_DEFINE /* Nothing to do here... */
+#define LWWDG_CRITICAL_SECTION_LOCK()                                                                                  \
+    do {                                                                                                               \
+        WaitForSingleObject(lwwdg_mutex, INFINITE);                                                                    \
+    } while (0)
+#define LWWDG_CRITICAL_SECTION_UNLOCK()     ReleaseMutex(lwwdg_mutex)
+#define LWWDG_GET_TIME()                    sys_get_tick()
+
+#define LWWDG_CFG_ENABLE_WDG_NAME           1
+#define LWWDG_CFG_WDG_NAME_ERR_DEBUG(_wdg_) printf("Watchdog %s failed to reload in time!\r\n", (_wdg_))
 
 #endif /* LWWDG_HDR_OPTS_H */
