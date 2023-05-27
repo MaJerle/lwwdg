@@ -77,6 +77,24 @@ lwwdg_add(lwwdg_wdg_t* wdg, uint32_t timeout) {
     return ret;
 }
 
+#if LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__
+
+/**
+ * \brief           Set the watchdog name for debug reasons.
+ * 
+ * \note            Available only when \ref LWWDG_CFG_ENABLE_WDG_NAME is enabled
+ * 
+ * \param           wdg: Watchdog instance
+ * \param           name: Pointer to the constant string for the name.
+ *                      String is not copied, rather only pointer is set
+ */
+void
+lwwdg_set_name(lwwdg_wdg_t* wdg, const char* name) {
+    wdg->name = name;
+}
+
+#endif /* LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__ */
+
 /**
  * \brief           Remove watchdog from the list
  * 
@@ -154,7 +172,11 @@ lwwdg_process(void) {
     for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
         if ((time - wdg->last_reload_time) > wdg->timeout) {
             ret = 0;
-            break;
+#if LWWDG_CFG_ENABLE_WDG_NAME
+            LWWDG_CFG_WDG_NAME_ERR_DEBUG(wdg->name);
+#else  /* LWWDG_CFG_ENABLE_WDG_NAME */
+            break; /* Stop execution */
+#endif /* LWWDG_CFG_ENABLE_WDG_NAME */
         }
     }
     LWWDG_CRITICAL_SECTION_UNLOCK();

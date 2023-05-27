@@ -53,6 +53,28 @@ extern "C" {
  */
 
 /**
+ * \brief           Enables or disables field in wdg structure to contain 
+ *                  watchdog name.
+ * 
+ * This can be useful for debugging purposes
+ */
+#ifndef LWWDG_CFG_ENABLE_WDG_NAME
+#define LWWDG_CFG_ENABLE_WDG_NAME 0
+#endif
+
+/**
+ * \brief           Macro called if \ref LWWDG_CFG_ENABLE_WDG_NAME is enabled
+ *                  and if watchdog error occurs.
+ * 
+ * It can be overwritten by the application to print watchdog name. 
+ * 
+ * \param[in]       _wdg_name_: Watchdog name as defined by \ref lwwdg_set_name function
+ */
+#ifndef LWWDG_CFG_WDG_NAME_ERR_DEBUG
+#define LWWDG_CFG_WDG_NAME_ERR_DEBUG(_wdg_name_)
+#endif
+
+/**
  * \brief           Get system time in milliseconds.
  * 
  * It is required to keep reload time

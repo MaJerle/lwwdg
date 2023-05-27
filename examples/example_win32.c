@@ -29,6 +29,7 @@ task1(void* arg) {
 
     printf("%8u: Task 1 started...\r\n", (unsigned)sys_get_tick());
     lwwdg_add(&wdg, 3000);
+    lwwdg_set_name(&wdg, "task_1_wdg");
     while (1) {
         /* Periodic reloads... */
         lwwdg_reload(&wdg);
@@ -43,6 +44,7 @@ task2(void* arg) {
 
     printf("%8u: Task 2 started...\r\n", (unsigned)sys_get_tick());
     lwwdg_add(&wdg, 5000);
+    lwwdg_set_name(&wdg, "task_2_wdg");
     while (1) {
         /* No reload in this task -> consider it failed to run properly */
         Sleep(1000);
