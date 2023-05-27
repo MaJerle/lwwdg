@@ -29,7 +29,7 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v0.0.1
+ * Version:         v1.0.0
  */
 #ifndef LWWDG_HDR_H
 #define LWWDG_HDR_H
