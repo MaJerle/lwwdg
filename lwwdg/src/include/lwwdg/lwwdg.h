@@ -68,6 +68,7 @@ uint8_t lwwdg_remove(lwwdg_wdg_t* wdg);
 uint8_t lwwdg_reload(lwwdg_wdg_t* wdg);
 uint8_t lwwdg_process(void);
 void lwwdg_set_name(lwwdg_wdg_t* wdg, const char* name);
+void lwwdg_print_expired(void);
 
 /**
  * \}
