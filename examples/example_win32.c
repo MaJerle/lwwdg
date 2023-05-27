@@ -82,5 +82,7 @@ example_win32(void) {
         }
         Sleep(500); /* Make some sleep to offload messages in the WIN32 example */
     }
+    printf("List of expired watchdogs\r\n");
+    lwwdg_print_expired();
     printf("Example completed - a hardware should reset the system now...\r\n");
 }

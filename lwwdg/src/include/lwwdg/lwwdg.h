@@ -29,7 +29,7 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v1.0.0
+ * Version:         v1.1.0
  */
 #ifndef LWWDG_HDR_H
 #define LWWDG_HDR_H
@@ -68,6 +68,7 @@ uint8_t lwwdg_remove(lwwdg_wdg_t* wdg);
 uint8_t lwwdg_reload(lwwdg_wdg_t* wdg);
 uint8_t lwwdg_process(void);
 void lwwdg_set_name(lwwdg_wdg_t* wdg, const char* name);
+void lwwdg_print_expired(void);
 
 /**
  * \}

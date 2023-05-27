@@ -29,12 +29,16 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v1.0.0
+ * Version:         v1.1.0
  */
 #include <stdint.h>
 #include <string.h>
 #include "lwwdg/lwwdg.h"
 
+/* Check if WDG did expire */
+#define WDG_IS_EXPIRED(_wdg_, _time_) (((_time_) - (_wdg_)->last_reload_time) > (_wdg_)->timeout)
+
+/* Pointer to first watchdog entry */
 static lwwdg_wdg_t* wdgs;
 
 /**
@@ -93,6 +97,25 @@ lwwdg_set_name(lwwdg_wdg_t* wdg, const char* name) {
     wdg->name = name;
 }
 
+/**
+ * \brief           Print all expired watchdogs
+ * 
+ * \note            \ref LWWDG_CFG_ENABLE_WDG_NAME and \ref LWWDG_CFG_WDG_NAME_ERR_DEBUG must
+ *                  be enabled and implemented
+ */
+void
+lwwdg_print_expired(void) {
+    LWWDG_CRITICAL_SECTION_DEFINE;
+    LWWDG_CRITICAL_SECTION_LOCK();
+
+    for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
+        if (WDG_IS_EXPIRED(wdg, time)) {
+            LWWDG_CFG_WDG_NAME_ERR_DEBUG(wdg->name);
+        }
+    }
+    LWWDG_CRITICAL_SECTION_UNLOCK();
+}
+
 #endif /* LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__ */
 
 /**
@@ -141,10 +164,9 @@ uint8_t
 lwwdg_reload(lwwdg_wdg_t* wdg) {
     LWWDG_CRITICAL_SECTION_DEFINE;
     uint8_t ret = 0;
-    uint32_t time = LWWDG_GET_TIME();
 
     LWWDG_CRITICAL_SECTION_LOCK();
-    if ((time - wdg->last_reload_time) < wdg->timeout) {
+    if (!WDG_IS_EXPIRED(wdg, LWWDG_GET_TIME())) {
         wdg->last_reload_time = time;
         ret = 1;
     }
@@ -165,13 +187,18 @@ lwwdg_reload(lwwdg_wdg_t* wdg) {
 uint8_t
 lwwdg_process(void) {
     LWWDG_CRITICAL_SECTION_DEFINE;
-    uint8_t ret = 1;
-    uint32_t time = LWWDG_GET_TIME();
+    static uint32_t failed = 0;
+    uint32_t time;
 
+    if (failed) {
+        return !failed;
+    }
+
+    time = LWWDG_GET_TIME();
     LWWDG_CRITICAL_SECTION_LOCK();
     for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
-        if ((time - wdg->last_reload_time) > wdg->timeout) {
-            ret = 0;
+        if (WDG_IS_EXPIRED(wdg, time)) {
+            failed = 1;
 #if LWWDG_CFG_ENABLE_WDG_NAME
             LWWDG_CFG_WDG_NAME_ERR_DEBUG(wdg->name);
 #else  /* LWWDG_CFG_ENABLE_WDG_NAME */
@@ -180,5 +207,5 @@ lwwdg_process(void) {
         }
     }
     LWWDG_CRITICAL_SECTION_UNLOCK();
-    return ret;
+    return !failed;
 }
