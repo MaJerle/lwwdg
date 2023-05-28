@@ -8,7 +8,7 @@
 
 ## v1.1.0
 
-- Print erro0 message only on one trial
+- Print error message only on one trial
 - Add print option to list all expired watchdogs
 
 ## v1.0.0
