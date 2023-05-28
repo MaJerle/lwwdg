@@ -58,8 +58,8 @@ typedef struct lwwdg_wdg {
     uint32_t timeout;          /*!< Timeout in milliseconds */
     uint32_t last_reload_time; /*!< Last reload time in milliseconds */
 #if LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__
-    const char* name;          /*!< Pointer to constant string indicating watchdog name */
-#endif                         /* LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__ */
+    const char* name; /*!< Pointer to constant string indicating watchdog name */
+#endif                /* LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__ */
 } lwwdg_wdg_t;
 
 uint8_t lwwdg_init(void);
