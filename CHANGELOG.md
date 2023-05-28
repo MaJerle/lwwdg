@@ -2,6 +2,10 @@
 
 ## Develop
 
+## v1.1.1
+
+- Fix wrong time check
+
 ## v1.1.0
 
 - Print error message only on one trial
@@ -15,3 +19,4 @@
 ## v0.0.1
 
 - First version
+****
