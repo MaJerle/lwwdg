@@ -29,7 +29,7 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v1.1.0
+ * Version:         v1.1.1
  */
 #include <stdint.h>
 #include <string.h>
@@ -106,10 +106,11 @@ lwwdg_set_name(lwwdg_wdg_t* wdg, const char* name) {
 void
 lwwdg_print_expired(void) {
     LWWDG_CRITICAL_SECTION_DEFINE;
-    LWWDG_CRITICAL_SECTION_LOCK();
+    uint32_t t = LWWDG_GET_TIME();
 
+    LWWDG_CRITICAL_SECTION_LOCK();
     for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
-        if (WDG_IS_EXPIRED(wdg, time)) {
+        if (WDG_IS_EXPIRED(wdg, t)) {
             LWWDG_CFG_WDG_NAME_ERR_DEBUG(wdg->name);
         }
     }
@@ -164,10 +165,11 @@ uint8_t
 lwwdg_reload(lwwdg_wdg_t* wdg) {
     LWWDG_CRITICAL_SECTION_DEFINE;
     uint8_t ret = 0;
+    uint32_t t = LWWDG_GET_TIME();
 
     LWWDG_CRITICAL_SECTION_LOCK();
-    if (!WDG_IS_EXPIRED(wdg, LWWDG_GET_TIME())) {
-        wdg->last_reload_time = time;
+    if (!WDG_IS_EXPIRED(wdg, t)) {
+        wdg->last_reload_time = t;
         ret = 1;
     }
     LWWDG_CRITICAL_SECTION_UNLOCK();
