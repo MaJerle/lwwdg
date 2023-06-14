@@ -39,7 +39,7 @@
 #define WDG_IS_EXPIRED(_wdg_, _time_) (((_time_) - (_wdg_)->last_reload_time) > (_wdg_)->timeout)
 
 /* Pointer to first watchdog entry */
-static lwwdg_wdg_t* wdgs;
+static lwwdg_wdg_t* volatile wdgs;
 
 /**
  * \brief           Initialize watchdog module
@@ -131,7 +131,7 @@ lwwdg_print_expired(void) {
  */
 uint8_t
 lwwdg_remove(lwwdg_wdg_t* wdg) {
-    lwwdg_wdg_t** ind;
+    lwwdg_wdg_t* volatile* ind;
     LWWDG_CRITICAL_SECTION_DEFINE;
     uint8_t ret = 0;
 
