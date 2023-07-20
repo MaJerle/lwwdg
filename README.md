@@ -7,7 +7,7 @@ to watch multiple threads and reset system if one of them fails.
 
 ## Features
 
-* Written in ANSI C99
+* Written in C (C11)
 * Easy to use - very little platform dependency
 * Written for operating systems in mind
 
