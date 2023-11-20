@@ -67,8 +67,8 @@ lwwdg_add(lwwdg_wdg_t* wdg, uint32_t timeout) {
     wdg->last_reload_time = LWWDG_GET_TIME();
     LWWDG_CRITICAL_SECTION_LOCK();
     /* Check if already on a list -> we don't want that */
-    for (lwwdg_wdg_t* w = wdgs; w != NULL; w = w->next) {
-        if (w == wdg) {
+    for (lwwdg_wdg_t* w_dg = wdgs; w_dg != NULL; w_dg = w_dg->next) {
+        if (w_dg == wdg) {
             ret = 0;
         }
     }
@@ -106,11 +106,11 @@ lwwdg_set_name(lwwdg_wdg_t* wdg, const char* name) {
 void
 lwwdg_print_expired(void) {
     LWWDG_CRITICAL_SECTION_DEFINE;
-    uint32_t t = LWWDG_GET_TIME();
+    uint32_t time_curr = LWWDG_GET_TIME();
 
     LWWDG_CRITICAL_SECTION_LOCK();
     for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
-        if (WDG_IS_EXPIRED(wdg, t)) {
+        if (WDG_IS_EXPIRED(wdg, time_curr)) {
             LWWDG_CFG_WDG_NAME_ERR_DEBUG(wdg->name);
         }
     }
@@ -165,11 +165,11 @@ uint8_t
 lwwdg_reload(lwwdg_wdg_t* wdg) {
     LWWDG_CRITICAL_SECTION_DEFINE;
     uint8_t ret = 0;
-    uint32_t t = LWWDG_GET_TIME();
+    uint32_t time_curr = LWWDG_GET_TIME();
 
     LWWDG_CRITICAL_SECTION_LOCK();
-    if (!WDG_IS_EXPIRED(wdg, t)) {
-        wdg->last_reload_time = t;
+    if (!WDG_IS_EXPIRED(wdg, time_curr)) {
+        wdg->last_reload_time = time_curr;
         ret = 1;
     }
     LWWDG_CRITICAL_SECTION_UNLOCK();
@@ -190,16 +190,16 @@ uint8_t
 lwwdg_process(void) {
     LWWDG_CRITICAL_SECTION_DEFINE;
     static uint32_t failed = 0;
-    uint32_t time;
+    uint32_t time_curr;
 
     if (failed) {
         return !failed;
     }
 
-    time = LWWDG_GET_TIME();
+    time_curr = LWWDG_GET_TIME();
     LWWDG_CRITICAL_SECTION_LOCK();
     for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
-        if (WDG_IS_EXPIRED(wdg, time)) {
+        if (WDG_IS_EXPIRED(wdg, time_curr)) {
             failed = 1;
 #if LWWDG_CFG_ENABLE_WDG_NAME
             LWWDG_CFG_WDG_NAME_ERR_DEBUG(wdg->name);
