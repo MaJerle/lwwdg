@@ -36,7 +36,7 @@ else()
     )
 
     # Add subdir with lwwdg and link to project
-    set(LWWDG_OPTS_DIR ${CMAKE_CURRENT_LIST_DIR}/dev)
+    set(LWWDG_OPTS_FILE ${CMAKE_CURRENT_LIST_DIR}/dev/lwwdg_opts.h)
     add_subdirectory(lwwdg)
     target_link_libraries(${PROJECT_NAME} lwwdg)
 endif()
