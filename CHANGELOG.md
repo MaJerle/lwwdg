@@ -2,13 +2,17 @@
 
 ## Develop
 
+## v1.1.2
+
+- Fix race condition in `lwwdg_process` function
+
 ## v1.1.1
 
 - Fix wrong time check
 
 ## v1.1.0
 
-- Print erro0 message only on one trial
+- Print error message only on one trial
 - Add print option to list all expired watchdogs
 
 ## v1.0.0

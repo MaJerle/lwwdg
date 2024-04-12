@@ -4,7 +4,7 @@
  */
 
 /*
- * Copyright (c) 2023 Tilen MAJERLE
+ * Copyright (c) 2024 Tilen MAJERLE
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v1.1.1
+ * Version:         v1.1.2
  */
 #ifndef LWWDG_HDR_H
 #define LWWDG_HDR_H
@@ -58,8 +58,8 @@ typedef struct lwwdg_wdg {
     uint32_t timeout;          /*!< Timeout in milliseconds */
     uint32_t last_reload_time; /*!< Last reload time in milliseconds */
 #if LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__
-    const char* name;          /*!< Pointer to constant string indicating watchdog name */
-#endif                         /* LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__ */
+    const char* name; /*!< Pointer to constant string indicating watchdog name */
+#endif                /* LWWDG_CFG_ENABLE_WDG_NAME || __DOXYGEN__ */
 } lwwdg_wdg_t;
 
 uint8_t lwwdg_init(void);

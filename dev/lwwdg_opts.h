@@ -4,7 +4,7 @@
  */
 
 /*
- * Copyright (c) 2023 Tilen MAJERLE
+ * Copyright (c) 2024 Tilen MAJERLE
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@
  * This file is part of LWWDG - Lightweight watchdog for RTOS in embedded systems.
  *
  * Author:          Tilen MAJERLE <tilen@majerle.eu>
- * Version:         v1.1.1
+ * Version:         v1.1.2
  */
 #ifndef LWWDG_HDR_OPTS_H
 #define LWWDG_HDR_OPTS_H
@@ -38,8 +38,8 @@
 
 /* Win32 port */
 #include "windows.h"
-extern uint32_t sys_get_tick(void);   /* Milliseconds tick is available externally */
-extern HANDLE lwwdg_mutex;            /* Mutex is defined and initialized externally */
+extern uint32_t sys_get_tick(void); /* Milliseconds tick is available externally */
+extern HANDLE lwwdg_mutex;          /* Mutex is defined and initialized externally */
 
 #define LWWDG_CRITICAL_SECTION_DEFINE /* Nothing to do here... */
 #define LWWDG_CRITICAL_SECTION_LOCK()                                                                                  \
