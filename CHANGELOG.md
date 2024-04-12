@@ -2,6 +2,8 @@
 
 ## Develop
 
+## v1.1.2
+
 - Fix race condition in `lwwdg_process` function
 
 ## v1.1.1

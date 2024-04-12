@@ -1,6 +1,6 @@
 {
     "name": "LwWDG",
-    "version": "v1.1.1",
+    "version": "v1.1.2",
     "description": "Lightweight watchdog for operating systems and embedded systems",
     "keywords": "lwwdg, watchdog, lightweight, independent, watchdog, rtos, os, system",
     "repository": {
