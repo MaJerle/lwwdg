@@ -2,6 +2,8 @@
 
 ## Develop
 
+- Fix race condition in `lwwdg_process` function
+
 ## v1.1.1
 
 - Fix wrong time check

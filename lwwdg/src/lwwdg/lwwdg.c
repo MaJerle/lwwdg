@@ -196,8 +196,8 @@ lwwdg_process(void) {
         return !failed;
     }
 
-    time_curr = LWWDG_GET_TIME();
     LWWDG_CRITICAL_SECTION_LOCK();
+    time_curr = LWWDG_GET_TIME();
     for (lwwdg_wdg_t* wdg = wdgs; wdg != NULL; wdg = wdg->next) {
         if (WDG_IS_EXPIRED(wdg, time_curr)) {
             failed = 1;
