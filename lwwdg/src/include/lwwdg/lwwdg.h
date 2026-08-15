@@ -34,10 +34,8 @@
 #ifndef LWWDG_HDR_H
 #define LWWDG_HDR_H
 
-#include <limits.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <time.h>
 #include "lwwdg/lwwdg_opt.h"
 
 #ifdef __cplusplus

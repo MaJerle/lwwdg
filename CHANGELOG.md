@@ -4,6 +4,7 @@
 
 - Rework library CMake with removed INTERFACE type
 - Fix the platformio library package description
+- Add `GCC-Debug` CMake preset for a portable, OS-independent build
 
 ## v1.1.2
 
