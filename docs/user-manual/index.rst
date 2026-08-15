@@ -38,7 +38,7 @@ A simple example to illustrate functionality.
 
 A corresponding options file, tested for WIN32.
 
-.. literalinclude:: ../../dev/lwwdg_opts.h
+.. literalinclude:: ../../examples/lwwdg_opts.h
     :language: c
     :linenos:
     :caption: WIN32 LwWDG options file

@@ -22,7 +22,6 @@
     "export": {
         "exclude": [
             ".github",
-            "dev",
             "docs",
             "**/.vs",
             "**/Debug",

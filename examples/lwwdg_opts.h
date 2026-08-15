@@ -1,6 +1,6 @@
 /**
- * \file            lwwdg_opts_template.h
- * \brief           LwWDG configuration file
+ * \file            lwwdg_opts.h
+ * \brief           LwWDG WIN32 example options file
  */
 
 /*
