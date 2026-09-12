@@ -3,7 +3,7 @@
 LwWDG is lightweight watchdog library, primarily targeting operating systems,
 to watch multiple threads and reset system if one of them fails.
 
-<h3>Read first: <a href="http://docs.majerle.eu/projects/lwwdg/">Documentation</a></h3>
+[Open documentation](https://docs.majerle.eu/projects/lwwdg/)
 
 ## Features
 
