@@ -4,7 +4,7 @@
  */
 
 /*
- * Copyright (c) 2024 Tilen MAJERLE
+ * Copyright (c) 2026 Tilen MAJERLE
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -53,7 +53,7 @@ lwwdg_init(void) {
 
 /**
  * \brief           Add new watchdog timer instance to internal linked list.
- * 
+ *
  * \param           wdg: Watchdog handle. Must not be local variable
  * \param           timeout: Max allowed timeout in milliseconds
  * \return          `1` on success, `0` otherwise
@@ -93,9 +93,9 @@ lwwdg_add(lwwdg_wdg_t* wdg, uint32_t timeout) {
 
 /**
  * \brief           Set the watchdog name for debug reasons.
- * 
+ *
  * \note            Available only when \ref LWWDG_CFG_ENABLE_WDG_NAME is enabled
- * 
+ *
  * \param           wdg: Watchdog instance
  * \param           name: Pointer to the constant string for the name.
  *                      String is not copied, rather only pointer is set
@@ -107,7 +107,7 @@ lwwdg_set_name(lwwdg_wdg_t* wdg, const char* name) {
 
 /**
  * \brief           Print all expired watchdogs
- * 
+ *
  * \note            \ref LWWDG_CFG_ENABLE_WDG_NAME and \ref LWWDG_CFG_WDG_NAME_ERR_DEBUG must
  *                  be enabled and implemented
  */
@@ -129,11 +129,11 @@ lwwdg_print_expired(void) {
 
 /**
  * \brief           Remove watchdog from the list
- * 
+ *
  * This function is typically used if a task
  * is killed by the scheduler. A user must manually
  * call the function and can later clean wdg memory
- * 
+ *
  * \param           wdg: Watchdog handle to remove from list
  * \return          `1` if removed, `0` otherwise
  */
@@ -162,11 +162,11 @@ lwwdg_remove(lwwdg_wdg_t* wdg) {
 
 /**
  * \brief           Reload thread watchdog
- * 
+ *
  * \note            Reload will not be successful, if there was a timeout before.
  *                  This will ensure that main thread won't reload hardware watchdog,
  *                  resulting system to reset
- * 
+ *
  * \param           wdg: Watchdog handle to reload
  * \return          `1` on success, `0` otherwise
  */
@@ -187,10 +187,10 @@ lwwdg_reload(lwwdg_wdg_t* wdg) {
 
 /**
  * \brief           Process and check system timers
- * 
+ *
  * Function will check all timers and will return OK,
  * if all timers are within max timeout state
- * 
+ *
  * \return          `1` if hardware watchdog can be reset,
  *                      `0` if at least one timer hasn't been reloaded
  *                      within maximum timeout

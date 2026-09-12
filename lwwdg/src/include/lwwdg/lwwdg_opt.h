@@ -4,7 +4,7 @@
  */
 
 /*
- * Copyright (c) 2024 Tilen MAJERLE
+ * Copyright (c) 2026 Tilen MAJERLE
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -53,9 +53,9 @@ extern "C" {
  */
 
 /**
- * \brief           Enables or disables field in wdg structure to contain 
+ * \brief           Enables or disables field in wdg structure to contain
  *                  watchdog name.
- * 
+ *
  * This can be useful for debugging purposes
  */
 #ifndef LWWDG_CFG_ENABLE_WDG_NAME
@@ -65,9 +65,9 @@ extern "C" {
 /**
  * \brief           Macro called if \ref LWWDG_CFG_ENABLE_WDG_NAME is enabled
  *                  and if watchdog error occurs.
- * 
- * It can be overwritten by the application to print watchdog name. 
- * 
+ *
+ * It can be overwritten by the application to print watchdog name.
+ *
  * \param[in]       _wdg_name_: Watchdog name as defined by \ref lwwdg_set_name function
  */
 #ifndef LWWDG_CFG_WDG_NAME_ERR_DEBUG
@@ -76,7 +76,7 @@ extern "C" {
 
 /**
  * \brief           Get system time in milliseconds.
- * 
+ *
  * It is required to keep reload time
  */
 #ifndef LWWDG_GET_TIME
@@ -86,10 +86,10 @@ extern "C" {
 
 /**
  * \brief           Define the critical section
- * 
+ *
  * Used at the beinning of the function, to define potential local
  * variable to keep status of critical section (if already locked)
- * 
+ *
  * \note            Default implementation is for *Cortex-M*
  */
 #ifndef LWWDG_CRITICAL_SECTION_DEFINE
@@ -98,12 +98,12 @@ extern "C" {
 
 /**
  * \brief           Lock the critical section.
- * 
+ *
  * Critical section should prevent other tasks or interrupt,
  * to access to the same core.
- * 
+ *
  * Easiest is to simply disable the interrupt, since task is normally pretty quick.
- * 
+ *
  * \note            Default implementation is for *Cortex-M*
  */
 #ifndef LWWDG_CRITICAL_SECTION_LOCK
@@ -116,7 +116,7 @@ extern "C" {
 
 /**
  * \brief           Unlock the critical section.
- * 
+ *
  * \note            Default implementation is for *Cortex-M*
  */
 #ifndef LWWDG_CRITICAL_SECTION_UNLOCK
