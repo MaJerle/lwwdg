@@ -7,7 +7,7 @@ to watch multiple threads and reset system if one of them fails.
 
 ## Features
 
-* Written in C (C11)
+* Written in C (C11), compatible with `stdint.h` for size data types
 * Easy to use - very little platform dependency
 * Written for operating systems in mind
 
@@ -16,8 +16,8 @@ to watch multiple threads and reset system if one of them fails.
 Fresh contributions are always welcome. Simple instructions to proceed:
 
 1. Fork Github repository
-2. Follow [C style & coding rules](https://github.com/MaJerle/c-code-style) already used in the project
-3. Create a pull request to develop branch with new features or bug fixes
+2. Follow [C style & coding rules](https://github.com/MaJerle/c-code-style) and use `clang-format` to format the code
+3. Create a pull request to `develop` branch with new features or bug fixes
 
 Alternatively you may:
 
