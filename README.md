@@ -1,6 +1,6 @@
 # Lightweight Watchdog for embedded systems
 
-LwWDG is lightweight watchdog library, primarily targeting operating systems,
+LwWDG is a lightweight watchdog library, primarily targeting operating systems,
 to watch multiple threads and reset system if one of them fails.
 
 [Open documentation](https://docs.majerle.eu/projects/lwwdg/)
@@ -8,8 +8,14 @@ to watch multiple threads and reset system if one of them fails.
 ## Features
 
 * Written in C (C11), compatible with `stdint.h` data types
+* Supervises multiple independent watchdogs, each with its own timeout, tracked in a linked list
+* Watchdogs can be added or removed at runtime with `lwwdg_add` and `lwwdg_remove`
+* Single `lwwdg_process` call checks all registered watchdogs to decide whether the hardware watchdog can be kicked
+* Optional named watchdogs with a debug callback fired once when a watchdog expires
+* Function to enumerate all watchdogs currently in an expired state
+* Configurable, platform-agnostic critical section macros for thread- and ISR-safe access
 * Easy to use - very little platform dependency
-* Written for operating systems in mind
+* Written with operating systems in mind
 
 ## Contribute
 
